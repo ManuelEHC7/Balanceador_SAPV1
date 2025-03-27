@@ -5,7 +5,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1488,8247</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1577,10255</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>LoginSAP_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -117,7 +117,13 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="LoginSAP" sap:VirtualizedContainerService.HintSize="933,8182" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence DisplayName="LoginSAP" sap:VirtualizedContainerService.HintSize="1587,10190" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Tenant_id" />
       <Variable x:TypeArguments="x:String" Name="Application_id" />
@@ -131,23 +137,24 @@
       <Variable x:TypeArguments="ss:SecureString" Name="Password_PRD" />
       <Variable x:TypeArguments="x:Int32" Default="0" Name="ContadorRow" />
       <Variable x:TypeArguments="x:Boolean" Name="blnCuentaAsignada" />
+      <Variable x:TypeArguments="x:Boolean" Name="blnSesionActiva" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Tenant Id" CacheStrategy="None" DisplayName="Get Asset - Tenant Id" FolderPath="Intradeco/US Automations" sap:VirtualizedContainerService.HintSize="871,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Tenant Id" CacheStrategy="None" DisplayName="Get Asset - Tenant Id" FolderPath="Intradeco/US Automations" sap:VirtualizedContainerService.HintSize="1525,144" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[Tenant_id]</OutArgument>
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Application Id" CacheStrategy="None" DisplayName="Get Asset - Application Id" FolderPath="Intradeco/US Automations" sap:VirtualizedContainerService.HintSize="871,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Application Id" CacheStrategy="None" DisplayName="Get Asset - Application Id" FolderPath="Intradeco/US Automations" sap:VirtualizedContainerService.HintSize="1525,144" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[Application_id]</OutArgument>
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
-    <uma:Office365ApplicationScope Account="{x:Null}" ConnectionAccountName="{x:Null}" Connector="{x:Null}" ApplicationId="[Application_id]" AuthenticationType="InteractiveToken" ConfigLocation="PropertiesPanel" DisplayName="Microsoft 365 Scope - Get Lista" Environment="Global" sap:VirtualizedContainerService.HintSize="871,1456" sap2010:WorkflowViewState.IdRef="Office365ApplicationScope_1" OAuthApplication="UiPath" TenantId="[Tenant_id]" UseConnectionService="False">
+    <uma:Office365ApplicationScope Account="{x:Null}" ConnectionAccountName="{x:Null}" Connector="{x:Null}" ApplicationId="[Application_id]" AuthenticationType="InteractiveToken" ConfigLocation="PropertiesPanel" DisplayName="Microsoft 365 Scope - Get Lista" Environment="Global" sap:VirtualizedContainerService.HintSize="1525,1456" sap2010:WorkflowViewState.IdRef="Office365ApplicationScope_1" OAuthApplication="UiPath" TenantId="[Tenant_id]" UseConnectionService="False">
       <uma:Office365ApplicationScope.ApplicationSecret>
         <InArgument x:TypeArguments="x:String" />
       </uma:Office365ApplicationScope.ApplicationSecret>
@@ -262,20 +269,20 @@
         <InArgument x:TypeArguments="x:String" />
       </uma:Office365ApplicationScope.Username>
     </uma:Office365ApplicationScope>
-    <ui:IfElseIf sap2010:Annotation.AnnotationText="Valida si la cuenta es de produccion (contiene rpa) o si es de developer&#xA;" DisplayName="Else If  &lt;&gt; &quot;upmiastudio&quot;" sap:VirtualizedContainerService.HintSize="871,6209" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
+    <ui:IfElseIf sap2010:Annotation.AnnotationText="Valida si la cuenta es de produccion (contiene rpa) o si es de developer&#xA;" DisplayName="Else If  &lt;&gt; &quot;upmiastudio&quot;" sap:VirtualizedContainerService.HintSize="1525,8215" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
       <ui:IfElseIf.ConditionBlocks>
         <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
           <ui:IfElseIfBlock BlockType="If" Condition="[System.Environment.Username.ToLower.ToString&lt;&gt;&quot;rpa&quot;]">
             <ui:IfElseIfBlock.Then>
-              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="820,3931" sap2010:WorkflowViewState.IdRef="Sequence_13">
+              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="820,3964" sap2010:WorkflowViewState.IdRef="Sequence_13">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="758,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Usuario DEV: &quot; + System.Environment.UserName.ToString]" />
-                <Assign sap:VirtualizedContainerService.HintSize="758,82" sap2010:WorkflowViewState.IdRef="Assign_10">
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="758,143" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Usuario DEV: &quot; + System.Environment.UserName.ToString]" />
+                <Assign sap:VirtualizedContainerService.HintSize="758,83" sap2010:WorkflowViewState.IdRef="Assign_10">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:Boolean">[blnCuentaAsignada]</OutArgument>
                   </Assign.To>
@@ -283,7 +290,7 @@
                     <InArgument x:TypeArguments="x:Boolean">False</InArgument>
                   </Assign.Value>
                 </Assign>
-                <uma:Office365ApplicationScope Account="{x:Null}" ConnectionAccountName="{x:Null}" Connector="{x:Null}" AuthenticationType="InteractiveToken" ConfigLocation="PropertiesPanel" DisplayName="Microsoft 365 Scope - For Each List Item DEVELOPER" Environment="Global" sap:VirtualizedContainerService.HintSize="758,3517" sap2010:WorkflowViewState.IdRef="Office365ApplicationScope_2" OAuthApplication="UiPath" UseConnectionService="False">
+                <uma:Office365ApplicationScope Account="{x:Null}" ConnectionAccountName="{x:Null}" Connector="{x:Null}" AuthenticationType="InteractiveToken" ConfigLocation="PropertiesPanel" DisplayName="Microsoft 365 Scope - For Each List Item DEVELOPER" Environment="Global" sap:VirtualizedContainerService.HintSize="758,3547" sap2010:WorkflowViewState.IdRef="Office365ApplicationScope_2" OAuthApplication="UiPath" UseConnectionService="False">
                   <uma:Office365ApplicationScope.ApplicationId>
                     <InArgument x:TypeArguments="x:String" />
                   </uma:Office365ApplicationScope.ApplicationId>
@@ -298,13 +305,13 @@
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="umac:IClientServices" Name="ParentScope" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="724,3432" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="724,3462" sap2010:WorkflowViewState.IdRef="Sequence_12">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <umas:ForEachListItem CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Para cada usuario en la lista de sharepoint hace otra validacion que el tipo de cuenta sea DEVELOPER&#xA;" DisplayName="For Each List Item - Developer" Filter="fields/AccountType eq 'DEV'" sap:VirtualizedContainerService.HintSize="682,2864" sap2010:WorkflowViewState.IdRef="ForEachListItem_1" List="[Lista_sharepoint]">
+                        <umas:ForEachListItem CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Para cada usuario en la lista de sharepoint hace otra validacion que el tipo de cuenta sea DEVELOPER&#xA;" DisplayName="For Each List Item - Developer" Filter="fields/AccountType eq 'DEV'" sap:VirtualizedContainerService.HintSize="682,2891" sap2010:WorkflowViewState.IdRef="ForEachListItem_1" List="[Lista_sharepoint]">
                           <umas:ForEachListItem.Body>
                             <ActivityAction x:TypeArguments="umm:Office365SharepointListItem, x:Int32">
                               <ActivityAction.Argument1>
@@ -313,36 +320,36 @@
                               <ActivityAction.Argument2>
                                 <DelegateInArgument x:TypeArguments="x:Int32" Name="ListItemIndex" />
                               </ActivityAction.Argument2>
-                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="648,2660" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="648,2684" sap2010:WorkflowViewState.IdRef="Sequence_11">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="586,52" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="586,53" sap2010:WorkflowViewState.IdRef="CommentOut_1">
                                   <ui:CommentOut.Body>
-                                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="546,483" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="1204,2891" sap2010:WorkflowViewState.IdRef="Sequence_8">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application: SAP Logon 740" sap:VirtualizedContainerService.HintSize="1142,372" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="10e3e47e-6bae-4068-9916-8850663ba712" Version="V2" WindowResize="Maximize">
+                                      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application: SAP Logon 740" sap:VirtualizedContainerService.HintSize="1142,2606" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="10e3e47e-6bae-4068-9916-8850663ba712" Version="V2" WindowResize="Maximize">
                                         <uix:NApplicationCard.Body>
                                           <ActivityAction x:TypeArguments="x:Object">
                                             <ActivityAction.Argument>
                                               <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                                             </ActivityAction.Argument>
-                                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1108,2273" sap2010:WorkflowViewState.IdRef="Sequence_7">
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                                 </scg:Dictionary>
                                               </sap:WorkflowViewStateService.ViewState>
-                                              <uix:NClick ActivateBefore="True" ClickType="Double" DisplayName="Click 'Name'" sap:VirtualizedContainerService.HintSize="1046,157" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="10e3e47e-6bae-4068-9916-8850663ba712" Version="V3">
+                                              <uix:NClick ActivateBefore="True" ClickType="Double" DisplayName="Click 'Name'" sap:VirtualizedContainerService.HintSize="1046,158" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="10e3e47e-6bae-4068-9916-8850663ba712" Version="V3">
                                                 <uix:NClick.Target>
                                                   <uix:TargetAnchorable CvTextArgument="laiProduction" CvType="Text" DesignTimeRectangle="492, 85, 910, 18" DesignTimeScaleFactor="1" ElementType="ListItem" FriendlyName="'Production'" FullSelectorArgument="&lt;wnd ctrlid='5002' title='myContainer' /&gt;&lt;wnd ctrlid='1008' /&gt;&lt;ctrl name='Production' role='list item' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='5002' title='myContainer' /&gt;&lt;wnd ctrlid='1008' /&gt;&lt;ctrl name='Production' role='list item' automationid='' check:text='Production' /&gt;" Guid="d4e3e149-2000-4b60-8d39-c21e40c6f562" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAA3wAAAAWCAYAAACbk56DAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAUWSURBVHhe7Zwxi9xGGIb1N/I78gfcBpzShY1rh7QJuDKodRHieiGQa5LCKQJHIIUNZlMfFwImnDEOuQM3IRgCIa0y79zMMJodabXS7kpaPS88fJr5pN3Zk+fTvNKui5uiqHL8/vZPODJX726qy9dX1bfPf7ZR7dx+AEvklOcHcx8OAXMGYJkwP+aPzlnOn4m//vmvhlRskw789LPH1a+v39g30D8OGAf9/XUenv/0ivMBkHDK84O5D4eAOQOwTJgf8yc+h17ya4MN37718aqqLh4VRCKRSCQSiUQikUgcECdp+PzgAAAAAAAAoD+TfcIHAAAAAAAAw+AJHwAAAAAAwIkyyPC9ff931vDd/+pV4G55XkN925Qb6F75oaquP1TVg1wOAACOCzUZAADgYMivpWZvL4avPH9vDd7X639rqG+bwhM+LQJcn1eZfIBe7GFxcWaOPzOvE/pYsACcBGtXa6S03vTNwRaon7OGeQEAMG0OZvi++O7KmrvVeVmt7pbVRxdlzfD5/J0vv7dRba8wQGf4/EXiwaVp7GNRcAjDBwCzR/N6/dK1Taz+GJ6DDmD4ZgvzAgBg+hz8Cd/qogrEhi82e4r3nr6w/VL6hC/cFYzbboFwZi4gUui7bVptPIFz/VZ+ceFeJyw00rZBF60gs72O25L2j49L3iuMw+3jxyxhGgGmg55GZOvNgNxUKKO6c31papVuoEVSn923rU7tkLOfX323TatONRlmxdznBQDAEhjN8Mnk6ame+hXV9goDTC8Qcdtth7uHho27idECopbTsT4Xb2fadpFksLkIvd7G4sUd1zgO7ROPORkjAIyIm59t9Wbn3FRIas2ZN3ceN2Zb09y2r1O1b1bskBO9ajLMB3fOZzsvAAAWwmiG75MnP1ZPX3yw/YpqezU94auZL+XiBULaNujuYryAqV14/L5bXqd2hzKi0fClr2eojaPlvQBgRDQfk/neWEO65qK+UUnMVo5Q0/R5utawtty2fc12tibDfEjPo2FW8wIAYCGMZvgePvul+vyb32y/otpeYYDughHUtpjILGjCHeQ0Fx+bvk6aM4fGFyxPo+FrG0fbewHAuKTzPW73zU0I1SEv/2Qt/Vpn1rgZehm+tlqY5jKvCzNA582cyjnPCwCAJTCa4dNTPe2nr3Iqqu3V+Bu+GOXSBUOyb+NCJG6nx7XlIhoNX+aYTuMAgNHRXK3VgqjdNzc1wtcwZbqicYaaltal+PP0zTmohafHqcwLAIBT5uiGT3pUlqbol/a3ezJ6imqrXwoDbLtAZBYI4e6x2skd5LDQMNu53534nP3aaHScvSue+Q2f9gvvJaLxNI4jHXPaBoBR2Zi70dzvm5sCqnm+xvnx2Trox6laZJo5M7axX8ecaKyFhsaaDLNizvMCAGApHNzwyeTFyNiVq3OLDJ7H9ynf6wmf77sdglXtOF1snK7NRWdj0eK0Ntu5RUtQvLhxXXahEo+naRzpmNM2AIyOjIhXWnv65kYnqn+SH18Ys6lD+t+Hg+Fz3VZpzXLdVtvqWbJ/7e/SUpNhXsx2XgAALIRBhu+mKBoNn0emzyPVzd0myucGCgAARyBn3LrkAAAAYJLIr8m37dXwtamL4QtP+AAA4Lhg+AAAAE6Koxs+/1u9JpTPDRQAAAAAAAB24+iGr4v8Ez4ikUgkEolEIpFIJPaPkzR8CCGEEEIIIYSGa7Dhy4EQQgghhBBC6PjK+TOxu+Eriv8BiC2JeIUdT7YAAAAASUVORK5CYII=" InformativeScreenshot="dbc389a754dccf61ed920ffeedbc88af.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='#32770' title='SAP Logon 740' /&gt;" SearchSteps="Selector, FuzzySelector, Image, CV" Version="V2" Visibility="Interactive">
                                                     <uix:TargetAnchorable.Anchors>
@@ -353,8 +360,8 @@
                                                   </uix:TargetAnchorable>
                                                 </uix:NClick.Target>
                                               </uix:NClick>
-                                              <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[ListItem.Fields(0).Value.ToString]" CacheStrategy="None" DisplayName="Get Credential" FolderPath="Intradeco/US Automations" sap:VirtualizedContainerService.HintSize="1046,143" sap2010:WorkflowViewState.IdRef="GetRobotCredential_3" Password="[Password_DEV]" Username="[Username_DEV]" />
-                                              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'TextField User'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="1046,254" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="10e3e47e-6bae-4068-9916-8850663ba712" Text="[Username_DEV]" Version="V3">
+                                              <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[ListItem.Fields(0).Value.ToString]" CacheStrategy="None" DisplayName="Get Credential" FolderPath="Intradeco/US Automations" sap:VirtualizedContainerService.HintSize="1046,144" sap2010:WorkflowViewState.IdRef="GetRobotCredential_3" Password="[Password_DEV]" Username="[Username_DEV]" />
+                                              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'TextField User'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="1046,256" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="10e3e47e-6bae-4068-9916-8850663ba712" Text="[Username_DEV]" Version="V3">
                                                 <uix:NTypeInto.Target>
                                                   <uix:TargetAnchorable DesignTimeRectangle="165, 247, 90, 20" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'TextField User'" FullSelectorArgument="&lt;sap id='usr/txtRSYST-BNAME' /&gt;" FuzzySelectorArgument="&lt;sap id='usr/txtRSYST-BNAME' /&gt;" Guid="e8292de4-3f4c-4aac-8f0b-b2d45cc9a8a7" InformativeScreenshot="3ccf04308268531440ebaf0a6f91d593.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='SAP R/3' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
                                                 </uix:NTypeInto.Target>
@@ -369,30 +376,30 @@
                                                   </uix:VerifyExecutionTypeIntoOptions>
                                                 </uix:NTypeInto.VerifyOptions>
                                               </uix:NTypeInto>
-                                              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'PasswordField Password'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="1046,218" sap2010:WorkflowViewState.IdRef="NTypeInto_2" IsPassword="True" ScopeIdentifier="10e3e47e-6bae-4068-9916-8850663ba712" SecureText="[Password_DEV]" Version="V3">
+                                              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'PasswordField Password'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="1046,219" sap2010:WorkflowViewState.IdRef="NTypeInto_2" IsPassword="True" ScopeIdentifier="10e3e47e-6bae-4068-9916-8850663ba712" SecureText="[Password_DEV]" Version="V3">
                                                 <uix:NTypeInto.Target>
                                                   <uix:TargetAnchorable DesignTimeRectangle="165, 269, 62, 20" DesignTimeScaleFactor="1" ElementType="InputBoxPassword" FriendlyName="'PasswordField Password'" FullSelectorArgument="&lt;sap id='usr/pwdRSYST-BCODE' /&gt;" FuzzySelectorArgument="&lt;sap id='usr/pwdRSYST-BCODE' /&gt;" Guid="f747c516-8ab4-44d3-be57-d5180e07af5f" InformativeScreenshot="18c7dcdde66d9a392a4343736edf63f6.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='SAP R/3' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
                                                 </uix:NTypeInto.Target>
                                               </uix:NTypeInto>
-                                              <uix:NClick ActivateBefore="True" ClickType="Double" DisplayName="Click 'Button Enter'" sap:VirtualizedContainerService.HintSize="1046,157" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="10e3e47e-6bae-4068-9916-8850663ba712" Version="V3">
+                                              <uix:NClick ActivateBefore="True" ClickType="Double" DisplayName="Click 'Button Enter'" sap:VirtualizedContainerService.HintSize="1046,158" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="10e3e47e-6bae-4068-9916-8850663ba712" Version="V3">
                                                 <uix:NClick.Target>
                                                   <uix:TargetAnchorable DesignTimeRectangle="30, 50, 22, 22" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Button Enter'" FullSelectorArgument="&lt;sap id='tbar[0]/btn[0]' /&gt;" FuzzySelectorArgument="&lt;sap id='tbar[0]/btn[0]' /&gt;" Guid="4917ebd8-d297-470c-9e7e-58976465c9de" InformativeScreenshot="86fd8da6d2ff0471207bcd142aa2c98c.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='SAP R/3' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
                                                 </uix:NClick.Target>
                                               </uix:NClick>
-                                              <uix:NCheckState DisplayName="Check App State 'UserArea usr'" sap:VirtualizedContainerService.HintSize="1046,1194" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="10e3e47e-6bae-4068-9916-8850663ba712" Version="V3">
+                                              <uix:NCheckState DisplayName="Check App State 'UserArea usr'" sap:VirtualizedContainerService.HintSize="1046,1023" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="10e3e47e-6bae-4068-9916-8850663ba712" Version="V3">
                                                 <uix:NCheckState.IfExists>
-                                                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="496,977" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                                                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="496,804" sap2010:WorkflowViewState.IdRef="Sequence_5">
                                                     <sap:WorkflowViewStateService.ViewState>
                                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                       </scg:Dictionary>
                                                     </sap:WorkflowViewStateService.ViewState>
-                                                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Button Confirm'" sap:VirtualizedContainerService.HintSize="434,157" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="10e3e47e-6bae-4068-9916-8850663ba712" Version="V3">
+                                                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Button Confirm'" sap:VirtualizedContainerService.HintSize="434,158" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="10e3e47e-6bae-4068-9916-8850663ba712" Version="V3">
                                                       <uix:NClick.Target>
                                                         <uix:TargetAnchorable DesignTimeRectangle="537, 575, 20, 20" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Button Confirm'" FullSelectorArgument="&lt;sap id='tbar[0]/btn[0]' /&gt;" FuzzySelectorArgument="&lt;sap id='tbar[0]/btn[0]' /&gt;" Guid="d9380f71-59d5-47ac-afeb-04c78d9fb73e" InformativeScreenshot="019503f5df6335510c3bb4422c3bf061.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='#32770' title='License Information for Multiple Logon' idx='*' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
                                                       </uix:NClick.Target>
                                                     </uix:NClick>
-                                                    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+                                                    <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_1">
                                                       <Assign.To>
                                                         <OutArgument x:TypeArguments="x:String">[contadorRow]</OutArgument>
                                                       </Assign.To>
@@ -400,7 +407,7 @@
                                                         <InArgument x:TypeArguments="x:Int32">[contadorRow+1]</InArgument>
                                                       </Assign.Value>
                                                     </Assign>
-                                                    <If Condition="[contadorRow = Dt_Dev.Rows.Count]" sap:VirtualizedContainerService.HintSize="434,360" sap2010:WorkflowViewState.IdRef="If_3">
+                                                    <If Condition="[contadorRow = Dt_Dev.Rows.Count]" sap:VirtualizedContainerService.HintSize="434,183" sap2010:WorkflowViewState.IdRef="If_3">
                                                       <If.Then>
                                                         <Sequence sap:VirtualizedContainerService.HintSize="376,178" sap2010:WorkflowViewState.IdRef="Sequence_3">
                                                           <sap:WorkflowViewStateService.ViewState>
@@ -421,17 +428,17 @@
                                                         </Sequence>
                                                       </If.Else>
                                                     </If>
-                                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="LogMessage_7" Message="[&quot;El contador recorrio en la rama developers &quot;  + contadorRow.ToString +&quot; veces&quot;]" />
+                                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,145" sap2010:WorkflowViewState.IdRef="LogMessage_7" Message="[&quot;El contador recorrio en la rama developers &quot;  + contadorRow.ToString +&quot; veces&quot;]" />
                                                   </Sequence>
                                                 </uix:NCheckState.IfExists>
                                                 <uix:NCheckState.IfNotExists>
-                                                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="496,688" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                                                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="496,693" sap2010:WorkflowViewState.IdRef="Sequence_6">
                                                     <sap:WorkflowViewStateService.ViewState>
                                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                       </scg:Dictionary>
                                                     </sap:WorkflowViewStateService.ViewState>
-                                                    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                                    <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_2">
                                                       <Assign.To>
                                                         <OutArgument x:TypeArguments="x:Object">[ListItem.Fields(2).Value]</OutArgument>
                                                       </Assign.To>
@@ -439,8 +446,8 @@
                                                         <InArgument x:TypeArguments="x:Object">["1"]</InArgument>
                                                       </Assign.Value>
                                                     </Assign>
-                                                    <umas:UpdateListItem ContinueOnError="{x:Null}" AuthScopesInvalid="False" DisplayName="Update List Item" sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="UpdateListItem_1" ListItem="[ListItem]" />
-                                                    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+                                                    <umas:UpdateListItem ContinueOnError="{x:Null}" AuthScopesInvalid="False" DisplayName="Update List Item" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="UpdateListItem_1" ListItem="[ListItem]" />
+                                                    <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_3">
                                                       <Assign.To>
                                                         <OutArgument x:TypeArguments="x:String">[contadorRow]</OutArgument>
                                                       </Assign.To>
@@ -448,7 +455,7 @@
                                                         <InArgument x:TypeArguments="x:Int32">[Dt_Dev.Rows.Count+1]</InArgument>
                                                       </Assign.Value>
                                                     </Assign>
-                                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Se ingreso de manera correcta en DEV&quot;]" />
+                                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,145" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Se ingreso de manera correcta en DEV&quot;]" />
                                                     <ui:Break sap:VirtualizedContainerService.HintSize="434,25" sap2010:WorkflowViewState.IdRef="Break_1" />
                                                   </Sequence>
                                                 </uix:NCheckState.IfNotExists>
@@ -480,11 +487,11 @@
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                 </ui:CommentOut>
-                                <If sap2010:Annotation.AnnotationText="Compara el valor del campo, ignorando mayúsculas, minúsculas y espacios y verifica si el estado es &quot;Disponible&quot;" Condition="[String.Equals(ListItem.Fields(2).Value.ToString.Trim(), &quot;Disponible&quot;, StringComparison.OrdinalIgnoreCase) = true AND blnCuentaAsignada = False]" sap:VirtualizedContainerService.HintSize="586,2457" sap2010:WorkflowViewState.IdRef="If_4">
+                                <If sap2010:Annotation.AnnotationText="Compara el valor del campo, ignorando mayúsculas, minúsculas y espacios y verifica si el estado es &quot;Disponible&quot;" Condition="[String.Equals(ListItem.Fields(2).Value.ToString.Trim(), &quot;Disponible&quot;, StringComparison.OrdinalIgnoreCase) = true AND blnCuentaAsignada = False]" sap:VirtualizedContainerService.HintSize="586,2480" sap2010:WorkflowViewState.IdRef="If_4">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -493,32 +500,29 @@
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                   <If.Then>
-                                    <Sequence sap:VirtualizedContainerService.HintSize="552,2153" sap2010:WorkflowViewState.IdRef="Sequence_19">
-                                      <Sequence.Variables>
-                                        <Variable x:TypeArguments="x:Boolean" Name="blnSesionActiva" />
-                                      </Sequence.Variables>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="552,2172" sap2010:WorkflowViewState.IdRef="Sequence_19">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[ListItem.Fields(0).Value.ToString]" CacheStrategy="None" DisplayName="Get Credential - Developer" FolderPath="Intradeco/US Automations" sap:VirtualizedContainerService.HintSize="510,143" sap2010:WorkflowViewState.IdRef="GetRobotCredential_4" Password="[Password_DEV]" Username="[Username_DEV]" />
-                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="LogonSAP v2.0.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="510,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="LogonSAP v2.0.xaml">
+                                      <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[ListItem.Fields(0).Value.ToString]" CacheStrategy="None" DisplayName="Get Credential - Developer" FolderPath="Intradeco/US Automations" sap:VirtualizedContainerService.HintSize="510,144" sap2010:WorkflowViewState.IdRef="GetRobotCredential_4" Password="[Password_DEV]" Username="[Username_DEV]" />
+                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="LogonSAP v2.0.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="510,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="LogonSAP v2.0.xaml">
                                         <ui:InvokeWorkflowFile.Arguments>
                                           <InArgument x:TypeArguments="ss:SecureString" x:Key="in_pass1">[Password_DEV]</InArgument>
                                           <InArgument x:TypeArguments="x:String" x:Key="in_user1">[Username_DEV]</InArgument>
                                           <OutArgument x:TypeArguments="x:Boolean" x:Key="out_SesionActiva">[blnSesionActiva]</OutArgument>
                                         </ui:InvokeWorkflowFile.Arguments>
                                       </ui:InvokeWorkflowFile>
-                                      <If Condition="[blnSesionActiva]" sap:VirtualizedContainerService.HintSize="510,947" sap2010:WorkflowViewState.IdRef="If_6">
+                                      <If Condition="[blnSesionActiva]" sap:VirtualizedContainerService.HintSize="510,954" sap2010:WorkflowViewState.IdRef="If_6">
                                         <If.Then>
-                                          <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                                          <Sequence sap:VirtualizedContainerService.HintSize="476,171" sap2010:WorkflowViewState.IdRef="Sequence_25">
                                             <sap:WorkflowViewStateService.ViewState>
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                               </scg:Dictionary>
                                             </sap:WorkflowViewStateService.ViewState>
-                                            <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_12">
+                                            <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_12">
                                               <Assign.To>
                                                 <OutArgument x:TypeArguments="x:Object">[ListItem.Fields(3).Value]</OutArgument>
                                               </Assign.To>
@@ -529,13 +533,13 @@
                                           </Sequence>
                                         </If.Then>
                                         <If.Else>
-                                          <Sequence sap:VirtualizedContainerService.HintSize="476,595" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                                          <Sequence sap:VirtualizedContainerService.HintSize="476,600" sap2010:WorkflowViewState.IdRef="Sequence_26">
                                             <sap:WorkflowViewStateService.ViewState>
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                               </scg:Dictionary>
                                             </sap:WorkflowViewStateService.ViewState>
-                                            <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_9">
+                                            <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_9">
                                               <Assign.To>
                                                 <OutArgument x:TypeArguments="x:Object">[ListItem.Fields(2).Value]</OutArgument>
                                               </Assign.To>
@@ -543,7 +547,7 @@
                                                 <InArgument x:TypeArguments="x:Object">[System.Environment.UserName.ToString]</InArgument>
                                               </Assign.Value>
                                             </Assign>
-                                            <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_13">
+                                            <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_13">
                                               <Assign.To>
                                                 <OutArgument x:TypeArguments="x:Object">[ListItem.Fields(3).Value]</OutArgument>
                                               </Assign.To>
@@ -551,7 +555,7 @@
                                                 <InArgument x:TypeArguments="x:Object">[""]</InArgument>
                                               </Assign.Value>
                                             </Assign>
-                                            <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_14">
+                                            <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_14">
                                               <Assign.To>
                                                 <OutArgument x:TypeArguments="x:Int32">[contadorRow]</OutArgument>
                                               </Assign.To>
@@ -559,20 +563,20 @@
                                                 <InArgument x:TypeArguments="x:Int32">[Dt_Prod.Rows.Count +1]</InArgument>
                                               </Assign.Value>
                                             </Assign>
-                                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Se ingreso de manera correcta en DEV &quot;  + &quot; ,el contador recorrio en developer &quot;  + contadorRow.ToString + &quot; veces&quot;]" />
+                                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Se ingreso de manera correcta en DEV &quot;  + &quot; ,el contador recorrio en developer &quot;  + contadorRow.ToString + &quot; veces&quot;]" />
                                           </Sequence>
                                         </If.Else>
                                       </If>
-                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="510,141" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="[UiPath.Core.Activities.LogLevel.Warn]" Message="[&quot;valor &quot; + ListItem.Fields(2).Value.ToString]" />
-                                      <umas:UpdateListItem ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Actualiza la lista de sharepoint con el nombre de la maquina que lo esta usando&#xA;" AuthScopesInvalid="False" DisplayName="Update List Item - Developer" sap:VirtualizedContainerService.HintSize="510,136" sap2010:WorkflowViewState.IdRef="UpdateListItem_4" ListItem="[ListItem]">
+                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="510,143" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="[UiPath.Core.Activities.LogLevel.Warn]" Message="[&quot;valor &quot; + ListItem.Fields(2).Value.ToString]" />
+                                      <umas:UpdateListItem ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Actualiza la lista de sharepoint con el nombre de la maquina que lo esta usando&#xA;" AuthScopesInvalid="False" DisplayName="Update List Item - Developer" sap:VirtualizedContainerService.HintSize="510,140" sap2010:WorkflowViewState.IdRef="UpdateListItem_4" ListItem="[ListItem]">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
                                       </umas:UpdateListItem>
-                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="510,141" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="[UiPath.Core.Activities.LogLevel.Fatal]" Message="[&quot; Comentario &quot; + ListItem.Fields(3).Value.ToString +&#xA;&quot;Status &quot; + ListItem.Fields(2).Value.ToString+&#xA;&quot; Tipo &quot;  + ListItem.Fields(1).Value.ToString+&#xA;&quot; Nombre &quot; + ListItem.Fields(0).Value.ToString]" />
-                                      <Assign sap:VirtualizedContainerService.HintSize="510,82" sap2010:WorkflowViewState.IdRef="Assign_8">
+                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="510,143" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="[UiPath.Core.Activities.LogLevel.Fatal]" Message="[&quot; Comentario &quot; + ListItem.Fields(3).Value.ToString +&#xA;&quot;Status &quot; + ListItem.Fields(2).Value.ToString+&#xA;&quot; Tipo &quot;  + ListItem.Fields(1).Value.ToString+&#xA;&quot; Nombre &quot; + ListItem.Fields(0).Value.ToString]" />
+                                      <Assign sap:VirtualizedContainerService.HintSize="510,83" sap2010:WorkflowViewState.IdRef="Assign_8">
                                         <Assign.To>
                                           <OutArgument x:TypeArguments="x:Int32">[contadorRow]</OutArgument>
                                         </Assign.To>
@@ -580,7 +584,7 @@
                                           <InArgument x:TypeArguments="x:Int32">[Dt_Prod.Rows.Count +1]</InArgument>
                                         </Assign.Value>
                                       </Assign>
-                                      <Assign sap:VirtualizedContainerService.HintSize="510,82" sap2010:WorkflowViewState.IdRef="Assign_11">
+                                      <Assign sap:VirtualizedContainerService.HintSize="510,83" sap2010:WorkflowViewState.IdRef="Assign_11">
                                         <Assign.To>
                                           <OutArgument x:TypeArguments="x:Boolean">[blnCuentaAsignada]</OutArgument>
                                         </Assign.To>
@@ -591,7 +595,7 @@
                                     </Sequence>
                                   </If.Then>
                                   <If.Else>
-                                    <Sequence sap:VirtualizedContainerService.HintSize="300,80" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                                    <Sequence sap:VirtualizedContainerService.HintSize="300,81" sap2010:WorkflowViewState.IdRef="Sequence_20">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -609,9 +613,9 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </umas:ForEachListItem>
-                        <If Condition="[blnCuentaAsignada=True]" sap:VirtualizedContainerService.HintSize="682,440" sap2010:WorkflowViewState.IdRef="If_5">
+                        <If Condition="[blnCuentaAsignada=True]" sap:VirtualizedContainerService.HintSize="682,443" sap2010:WorkflowViewState.IdRef="If_5">
                           <If.Then>
-                            <Sequence sap:VirtualizedContainerService.HintSize="300,80" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                            <Sequence sap:VirtualizedContainerService.HintSize="300,81" sap2010:WorkflowViewState.IdRef="Sequence_23">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -620,13 +624,13 @@
                             </Sequence>
                           </If.Then>
                           <If.Else>
-                            <Sequence sap:VirtualizedContainerService.HintSize="376,178" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                            <Sequence sap:VirtualizedContainerService.HintSize="376,179" sap2010:WorkflowViewState.IdRef="Sequence_24">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <TerminateWorkflow DisplayName="Terminate Workflow - Developer" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_4" Reason="No hay licencias SAP asignadas para DEVELOPER" />
+                              <TerminateWorkflow DisplayName="Terminate Workflow - Developer" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_4" Reason="No hay licencias SAP asignadas para DEVELOPER" />
                             </Sequence>
                           </If.Else>
                         </If>
@@ -681,14 +685,14 @@
           </ui:IfElseIfBlock>
           <ui:IfElseIfBlock BlockType="Else">
             <ui:IfElseIfBlock.Then>
-              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="744,2004" sap2010:WorkflowViewState.IdRef="Sequence_18">
+              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="820,3973" sap2010:WorkflowViewState.IdRef="Sequence_18">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="682,141" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;Usuario PRD &quot; + System.Environment.MachineName.ToString]" />
-                <uma:Office365ApplicationScope Account="{x:Null}" ConnectionAccountName="{x:Null}" Connector="{x:Null}" AuthenticationType="InteractiveToken" ConfigLocation="PropertiesPanel" DisplayName="Microsoft 365 Scope - For each list item PRD" Environment="Global" sap:VirtualizedContainerService.HintSize="682,1712" sap2010:WorkflowViewState.IdRef="Office365ApplicationScope_3" OAuthApplication="UiPath" UseConnectionService="False">
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="758,143" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;Usuario PRD &quot; + System.Environment.MachineName.ToString]" />
+                <uma:Office365ApplicationScope Account="{x:Null}" ConnectionAccountName="{x:Null}" Connector="{x:Null}" AuthenticationType="InteractiveToken" ConfigLocation="PropertiesPanel" DisplayName="Microsoft 365 Scope - For each list item PRD" Environment="Global" sap:VirtualizedContainerService.HintSize="758,3679" sap2010:WorkflowViewState.IdRef="Office365ApplicationScope_3" OAuthApplication="UiPath" UseConnectionService="False">
                   <uma:Office365ApplicationScope.ApplicationId>
                     <InArgument x:TypeArguments="x:String" />
                   </uma:Office365ApplicationScope.ApplicationId>
@@ -703,13 +707,13 @@
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="umac:IClientServices" Name="ParentScope" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="648,1627" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="724,3594" sap2010:WorkflowViewState.IdRef="Sequence_17">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <umas:ForEachListItem CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Para cada usuario en la lista de sharepoint hace otra validacion que el tipo de cuenta sea PRD&#xA;" DisplayName="For Each List Item" Filter="fields/AccountType eq 'PRD'" sap:VirtualizedContainerService.HintSize="606,1539" sap2010:WorkflowViewState.IdRef="ForEachListItem_2" List="[Lista_sharepoint]">
+                        <umas:ForEachListItem CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Para cada usuario en la lista de sharepoint hace otra validacion que el tipo de cuenta sea PRD&#xA;" DisplayName="For Each List Item" Filter="fields/AccountType eq 'PRD'" sap:VirtualizedContainerService.HintSize="682,3023" sap2010:WorkflowViewState.IdRef="ForEachListItem_2" List="[Lista_sharepoint]">
                           <umas:ForEachListItem.Body>
                             <ActivityAction x:TypeArguments="umm:Office365SharepointListItem, x:Int32">
                               <ActivityAction.Argument1>
@@ -718,13 +722,13 @@
                               <ActivityAction.Argument2>
                                 <DelegateInArgument x:TypeArguments="x:Int32" Name="ListItemIndex" />
                               </ActivityAction.Argument2>
-                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="572,1335" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="648,2816" sap2010:WorkflowViewState.IdRef="Sequence_16">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <If sap2010:Annotation.AnnotationText="Valida que aunque hayan cuentas asignadas a PRD estas tienen que estar libres, de no haber ninguna cuenta libre este manda un mensaje de que estan siendo utilizadas las licencias" Condition="[ListItem.Fields(2).Value.ToString.ToLower.Equals(&quot;Disponible&quot;) = true]" sap:VirtualizedContainerService.HintSize="510,1224" sap2010:WorkflowViewState.IdRef="If_2">
+                                <If sap2010:Annotation.AnnotationText="Valida que aunque hayan cuentas asignadas a PRD estas tienen que estar libres, de no haber ninguna cuenta libre este manda un mensaje de que estan siendo utilizadas las licencias" Condition="[ListItem.Fields(2).Value.ToString.ToLower.Equals(&quot;Disponible&quot;) = true AND blnCuentaAsignada = false]" sap:VirtualizedContainerService.HintSize="586,2705" sap2010:WorkflowViewState.IdRef="If_2">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -733,14 +737,14 @@
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                   <If.Then>
-                                    <Sequence sap:VirtualizedContainerService.HintSize="476,985" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                    <Sequence sap:VirtualizedContainerService.HintSize="552,2478" sap2010:WorkflowViewState.IdRef="Sequence_14">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[ListItem.Fields(0).Value.ToString]" CacheStrategy="None" DisplayName="Get Credential - PRD" FolderPath="Intradeco/US Automations" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[Password_PRD]" Username="[Username_PRD]" />
-                                      <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_6">
+                                      <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[ListItem.Fields(0).Value.ToString]" CacheStrategy="None" DisplayName="Get Credential - PRD" FolderPath="Intradeco/US Automations" sap:VirtualizedContainerService.HintSize="510,144" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[Password_PRD]" Username="[Username_PRD]" />
+                                      <Assign sap:VirtualizedContainerService.HintSize="510,83" sap2010:WorkflowViewState.IdRef="Assign_6">
                                         <Assign.To>
                                           <OutArgument x:TypeArguments="x:Int32">[ContadorRow]</OutArgument>
                                         </Assign.To>
@@ -748,29 +752,92 @@
                                           <InArgument x:TypeArguments="x:Int32">[Dt_Prod.Rows.Count +1]</InArgument>
                                         </Assign.Value>
                                       </Assign>
-                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Se ingreso de manera correcta en PRD &quot;  + &quot;\n El contador recorrio en produccion &quot;  + contadorRow.ToString + &quot; veces&quot;]" />
-                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="LogonSAP v2.0.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="LogonSAP v2.0.xaml">
+                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="510,143" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Se ingreso de manera correcta en PRD &quot;  + &quot;\n El contador recorrio en produccion &quot;  + contadorRow.ToString + &quot; veces&quot;]" />
+                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="LogonSAP v2.0.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="510,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="LogonSAP v2.0.xaml">
                                         <ui:InvokeWorkflowFile.Arguments>
                                           <InArgument x:TypeArguments="ss:SecureString" x:Key="in_pass1">[Password_PRD]</InArgument>
                                           <InArgument x:TypeArguments="x:String" x:Key="in_user1">[Username_PRD]</InArgument>
                                           <OutArgument x:TypeArguments="x:Boolean" x:Key="out_SesionActiva">[blnCuentaAsignada]</OutArgument>
                                         </ui:InvokeWorkflowFile.Arguments>
                                       </ui:InvokeWorkflowFile>
-                                      <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_7">
-                                        <Assign.To>
-                                          <OutArgument x:TypeArguments="x:Object">[ListItem.Fields(2).Value]</OutArgument>
-                                        </Assign.To>
-                                        <Assign.Value>
-                                          <InArgument x:TypeArguments="x:Object">[System.Environment.MachineName.ToString]</InArgument>
-                                        </Assign.Value>
-                                      </Assign>
-                                      <umas:UpdateListItem ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Actualiza la lista de sharepoint con el nombre de la maquina que lo esta usando&#xA;" AuthScopesInvalid="False" DisplayName="Update List Item" sap:VirtualizedContainerService.HintSize="434,136" sap2010:WorkflowViewState.IdRef="UpdateListItem_3" ListItem="[ListItem]">
+                                      <If Condition="[blnSesionActiva]" sap:VirtualizedContainerService.HintSize="510,954" sap2010:WorkflowViewState.IdRef="If_7">
+                                        <If.Then>
+                                          <Sequence sap:VirtualizedContainerService.HintSize="476,171" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_15">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Object">[ListItem.Fields(3).Value]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Object">["Licencia en uso por RPA"]</InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                          </Sequence>
+                                        </If.Then>
+                                        <If.Else>
+                                          <Sequence sap:VirtualizedContainerService.HintSize="476,600" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_16">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Object">[ListItem.Fields(2).Value]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Object">[System.Environment.UserName.ToString]</InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_17">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Object">[ListItem.Fields(3).Value]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Object">[""]</InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_18">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Int32">[contadorRow]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Int32">[Dt_Prod.Rows.Count +1]</InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Se ingreso de manera correcta en PRD &quot;  + &quot; ,el contador recorrio en developer &quot;  + contadorRow.ToString + &quot; veces&quot;]" />
+                                          </Sequence>
+                                        </If.Else>
+                                      </If>
+                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="510,143" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="[UiPath.Core.Activities.LogLevel.Warn]" Message="[&quot;valor &quot; + ListItem.Fields(2).Value.ToString]" />
+                                      <umas:UpdateListItem ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Actualiza la lista de sharepoint con el nombre de la maquina que lo esta usando&#xA;" AuthScopesInvalid="False" DisplayName="Update List Item" sap:VirtualizedContainerService.HintSize="510,140" sap2010:WorkflowViewState.IdRef="UpdateListItem_3" ListItem="[ListItem]">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
                                       </umas:UpdateListItem>
+                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="510,143" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="[UiPath.Core.Activities.LogLevel.Fatal]" Message="[&quot; Comentario &quot; + ListItem.Fields(3).Value.ToString +&#xA;&quot;Status &quot; + ListItem.Fields(2).Value.ToString+&#xA;&quot; Tipo &quot;  + ListItem.Fields(1).Value.ToString+&#xA;&quot; Nombre &quot; + ListItem.Fields(0).Value.ToString]" />
+                                      <Assign sap:VirtualizedContainerService.HintSize="510,83" sap2010:WorkflowViewState.IdRef="Assign_20">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Int32">[contadorRow]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Int32">[Dt_Prod.Rows.Count +1]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign sap:VirtualizedContainerService.HintSize="510,83" sap2010:WorkflowViewState.IdRef="Assign_19">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Boolean">[blnCuentaAsignada]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
                                     </Sequence>
                                   </If.Then>
                                   <If.Else>
@@ -795,6 +862,27 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </umas:ForEachListItem>
+                        <If Condition="[blnCuentaAsignada=True]" sap:VirtualizedContainerService.HintSize="682,443" sap2010:WorkflowViewState.IdRef="If_8">
+                          <If.Then>
+                            <Sequence sap:VirtualizedContainerService.HintSize="300,81" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence sap:VirtualizedContainerService.HintSize="376,179" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <TerminateWorkflow DisplayName="Terminate Workflow - Developer" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_5" Reason="No hay licencias SAP asignadas para DEVELOPER" />
+                            </Sequence>
+                          </If.Else>
+                        </If>
                       </Sequence>
                     </ActivityAction>
                   </uma:Office365ApplicationScope.Body>
